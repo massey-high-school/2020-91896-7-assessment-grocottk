@@ -17,17 +17,26 @@ def statement_generator(message, character):
     print()
 
 # Instructions Function (Prints the instructions to the program for first time users.)
+# Formatting Credit to 'The Python Cheat Sheet' and 'Noobmaster69'
 
 
 def instructions():
 
     print('''
-    Welcome to the Geometry Calculator,
+Welcome to the Geometry Calculator,
 
-    In this program, you will be expected to enter the name of a shape,
-    followed by various lengths associated with the shape.
-    After this...
+This program is intended for use by Intermediate School Students to assist in the completion of geometric equations.
 
+In this program, you will be expected to enter the name of the shape type that you would like to calculate,
+followed by the desired results and the required lengths that must be used.
+
+After this, the answer to your specific result (either perimeter or area) will be given,
+with the program asking whether if you would like to solve more shape problems.
+
+Finally, after all shapes have been entered,
+a summary of the working done by the program will be printed to end the program.
+
+Please begin the program by entering the name of your desired shape.
     ''')
 
 # Yes or No Checker (Checks whether an input is either Yes or a No)
@@ -71,6 +80,7 @@ def yes_no(question):
 
 # *** Main Routine: ***
 
+
 # Prints Title
 
 statement_generator("Welcome to the Geometry Calculator", "*")
@@ -78,6 +88,12 @@ statement_generator("Welcome to the Geometry Calculator", "*")
 # Asks User whether they have used the program before [Adapted from '02_yes_no_checker.py' by Ms. Gottschalk]
 
 program_experience = yes_no("Have you used this program before? ")
+
+# Prints Input for Testing
+
+print('''
+You said {}
+'''.format(program_experience))
 
 # If the user answers yes, (print) 'continue the program'
 
@@ -90,7 +106,4 @@ if program_experience == "yes":
 elif program_experience == "no":
 
     instructions()
-
-# Prints Input for Testing
-
-print("You said {}".format(program_experience))
+    print("continue")
