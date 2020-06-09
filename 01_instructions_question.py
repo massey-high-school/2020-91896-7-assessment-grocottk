@@ -68,7 +68,7 @@ def yes_no(question):
 
                 return response
 
-            # if the response is yes, return 'yes'
+            # if the response is one letter and is either a 'y' or 'n', return the corresponding answer.
 
             elif response == item[0]:
 
