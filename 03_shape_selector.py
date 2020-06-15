@@ -5,6 +5,7 @@
 
 # *** Functions: ***
 
+# Shape List Formatter (Formats 'valid_shapes' list in order to improve usability)
 # Code adapted from '00_sandpit.py' created by Ms. Gottschalk.
 # ... This code has been adapted through variable name changes and comments that describe the code's purpose
 
@@ -49,7 +50,7 @@ def shape_choice(question):
     valid = False
     while not valid:
 
-        # Defines response variable
+        # Defines response variable (as well as converting input into all lowercase letters)
 
         response = input(question).lower()
 
