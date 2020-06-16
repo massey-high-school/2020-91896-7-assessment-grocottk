@@ -95,6 +95,15 @@ def shape_choice(question):
 
         print("Please enter a valid shape from{}".format(shape_list_formatting()))
 
+# Equation Definer (Defines all equations applicable with program for both Perimeter and Area.)
+# [This code has now been entered into the Main Routine of the Component]
+
+# Defines list of equations associated with various shape types
+
+equation_types = [["length * 4", "length * length"], ["(radius * 2) * π", "π * (radius^2)"],
+                  ["(base * 2) + (height * 2)", "base * height"], ["side * 3", "side * triangle_height"]]
+
+
 # *** Main Routine: ***
 
 # * Receiving Shape Type: * [Inspired by subheadings from '11_post_usability_testing_outcome.py' by Kahlil Grocott]
@@ -106,7 +115,31 @@ shape_type = shape_choice("Please enter a shape from the following{} ".format(sh
 # Prints the user's shape choice for testing
 
 print('''
-You chose the {}
-'''.format(shape_type))
+You chose the {}'''.format(shape_type))
 
 # * Printing Shape Equation(s): *
+
+# Uses 'if' and 'elif' statements in order to link input and corresponding equation
+# (This code is currently inefficient and will most likely need to be improved.
+
+equation_choice = ""
+
+if shape_type == "square":
+
+    equation_choice = (equation_types[0])
+
+elif shape_type == "circle":
+
+    equation_choice = (equation_types[1])
+
+elif shape_type == "rectangle":
+
+    equation_choice = (equation_types[2])
+
+elif shape_type == "triangle":
+
+    equation_choice = (equation_types[3])
+
+print('''
+the equations associated with your chosen shape are: {}
+'''.format(equation_choice))
