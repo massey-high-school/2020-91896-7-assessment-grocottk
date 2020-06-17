@@ -98,11 +98,26 @@ def shape_choice(question):
 # Equation Definer (Defines all equations applicable with program for both Perimeter and Area.)
 # [This code has now been entered into the Main Routine of the Component]
 
+# Defines undefined variables (and constant) [for testing] (pairs with equation list without quotation marks)
+
+# length = 0
+# radius = 0
+# PI = 3.14159265359
+# base = 0
+# height = 0
+# triangle_side = 0
+# triangle_height = 0
+
 # Defines list of equations associated with various shape types
 
 equation_types = [["length * 4", "length * length"], ["(radius * 2) * π", "π * (radius^2)"],
                   ["(base * 2) + (height * 2)", "base * height"], ["side * 3", "side * triangle_height"]]
 
+# Defines list of equations associated with various shape types, without quotation marks.
+# ... (These should be used in the final program)
+
+# equation_types = [[length * 4, length * length], [(radius * 2) * PI, PI * (radius ^ 2)],
+#                   [(base * 2) + (height * 2), base * height], [triangle_side * 3, triangle_side * triangle_height]]
 
 # *** Main Routine: ***
 
@@ -124,22 +139,26 @@ You chose the {}'''.format(shape_type))
 
 equation_choice = ""
 
-if shape_type == "square":
+if shape_type == valid_shapes[0]:
 
     equation_choice = (equation_types[0])
 
-elif shape_type == "circle":
+elif shape_type == valid_shapes[1]:
 
     equation_choice = (equation_types[1])
 
-elif shape_type == "rectangle":
+elif shape_type == valid_shapes[2]:
 
     equation_choice = (equation_types[2])
 
-elif shape_type == "triangle":
+elif shape_type == valid_shapes[3]:
 
     equation_choice = (equation_types[3])
 
 print('''
-the equations associated with your chosen shape are: {}
-'''.format(equation_choice))
+The equations associated with {}s are:
+
+'{}' and
+
+'{}'
+'''.format(shape_type, equation_choice[0], equation_choice[1]))
