@@ -135,7 +135,7 @@ You chose the {}'''.format(shape_type))
 # * Printing Shape Equation(s): *
 
 # Uses 'if' and 'elif' statements in order to link input and corresponding equation
-# (This code is currently inefficient and will most likely need to be improved.
+# (This code is currently inefficient and will most likely need to be improved.)
 
 equation_choice = ""
 
@@ -154,6 +154,8 @@ elif shape_type == valid_shapes[2]:
 elif shape_type == valid_shapes[3]:
 
     equation_choice = (equation_types[3])
+
+# Prints a text-based version of
 
 print('''
 The equations associated with {}s are:
