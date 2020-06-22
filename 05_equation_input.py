@@ -93,6 +93,43 @@ text_equation_types = [["length * 4", "length * length"], ["(radius * 2) * π", 
 equation_types = [[length * 4, length * length], [(radius * 2) * PI, PI * (radius ^ 2)],
                   [(base * 2) + (height * 2), base * height], [triangle_side * 3, triangle_side * triangle_height]]
 
+# Number Checking Function (For floats [Numbers that allow the use of decimal points] greater than zero):
+# ... [This code was taken from Kahlil Grocott's '11_post_usability_testing_outcome.py']
+
+
+def number_checker(question):
+
+    # Defines Error Message
+
+    error = "Please enter a number (decimal places allowed) that is more than zero."
+
+    # Beginning of Loop
+
+    valid = False
+    while not valid:
+
+        try:
+
+            response = float(input(question))
+
+            # If response is less than or equal to zero, print the error message
+
+            if response <= 0:
+
+                print(error)
+
+            # Otherwise, return the user's response
+
+            else:
+
+                return response
+
+        # If a value error is present, print the error message
+
+        except ValueError:
+
+            print(error)
+
 # *** Main Routine: ***
 
 # * Receiving Shape Type: * [Inspired by subheadings from '11_post_usability_testing_outcome.py' by Kahlil Grocott]
@@ -106,6 +143,8 @@ shape_type = shape_choice("Please enter a shape from the following{} ".format(sh
 print('''
 You chose the {}'''.format(shape_type))
 
+# * Printing Shape Equation(s): *
+
 # Uses 'if' and 'elif' statements in order to link input and corresponding equation
 # (This code is currently inefficient and will most likely need to be improved.)
 # [This function has been adapted from its use in Component 4, where in this program,
@@ -116,18 +155,28 @@ equation_choice = ""
 if shape_type == valid_shapes[0]:
 
     text_equation = (text_equation_types[0])
+    unit_name = "length"
+    second_unit_name = ""
 
 elif shape_type == valid_shapes[1]:
 
     text_equation = (text_equation_types[1])
+    unit_name = "radius"
+    second_unit_name = ""
 
 elif shape_type == valid_shapes[2]:
 
     text_equation = (text_equation_types[2])
+    unit_name = "base"
+    second_unit_name = "height"
 
 elif shape_type == valid_shapes[3]:
 
     text_equation = (text_equation_types[3])
+    unit_name = "base"
+    second_unit_name = "height"
+
+# Prints the user with a text-based version of the equations provided in the program.
 
 print('''
 The equations associated with {}s are:
@@ -136,3 +185,12 @@ The equations associated with {}s are:
 
 '{}'
 '''.format(shape_type, text_equation[0], text_equation[1]))
+
+# Basic question asking user for shape measurement input.
+
+user_measurement = number_checker("Please enter the {} of your {} in centimeters ".format(unit_name, shape_type))
+
+# Prints user response to above question
+
+print()
+print("The {} of your {} is {:.2f}cm".format(unit_name, shape_type, user_measurement))

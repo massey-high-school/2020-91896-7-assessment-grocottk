@@ -155,7 +155,7 @@ elif shape_type == valid_shapes[3]:
 
     equation_choice = (equation_types[3])
 
-# Prints a text-based version of
+# Prints a text-based version of the equations provided in the program.
 
 print('''
 The equations associated with {}s are:
