@@ -79,8 +79,10 @@ radius = 0
 PI = 3.14159265359
 base = 0
 height = 0
-triangle_side = 0
+triangle_base = 0
 triangle_height = 0
+first_unit = 0
+second_unit = 0
 
 # Defines list of equations associated with various shape types
 
@@ -90,8 +92,10 @@ text_equation_types = [["length * 4", "length * length"], ["(radius * 2) * π", 
 # Defines list of equations associated with various shape types, without quotation marks.
 # ... (These should be used in the final program)
 
-equation_types = [[length * 4, length * length], [(radius * 2) * PI, PI * (radius ^ 2)],
-                  [(base * 2) + (height * 2), base * height], [triangle_side * 3, triangle_side * triangle_height]]
+equation_types = [[float(first_unit) * 4, float(first_unit) * float(first_unit)],
+                  [(float(first_unit) * 2) * PI, PI * (float(first_unit) * float(first_unit))],
+                  [(float(first_unit) * 2) + (float(second_unit) * 2), float(first_unit) * float(second_unit)],
+                  [float(first_unit) * 3, float(first_unit) * float(second_unit)]]
 
 # Number Checking Function (For floats [Numbers that allow the use of decimal points] greater than zero):
 # ... [This code was taken from Kahlil Grocott's '11_post_usability_testing_outcome.py']
@@ -154,27 +158,37 @@ equation_choice = ""
 
 if shape_type == valid_shapes[0]:
 
-    text_equation = (text_equation_types[0])
-    unit_name = "length"
+    text_equation = text_equation_types[0]
+    first_unit_name = "length"
     second_unit_name = ""
+    first_unit = length
+    equation = equation_types[0]
 
 elif shape_type == valid_shapes[1]:
 
-    text_equation = (text_equation_types[1])
-    unit_name = "radius"
+    text_equation = text_equation_types[1]
+    first_unit_name = "radius"
     second_unit_name = ""
+    first_unit = radius
+    equation = equation_types[1]
 
 elif shape_type == valid_shapes[2]:
 
-    text_equation = (text_equation_types[2])
-    unit_name = "base"
+    text_equation = text_equation_types[2]
+    first_unit_name = "base"
     second_unit_name = "height"
+    first_unit = base
+    second_unit = height
+    equation = equation_types[2]
 
 elif shape_type == valid_shapes[3]:
 
-    text_equation = (text_equation_types[3])
-    unit_name = "base"
+    text_equation = text_equation_types[3]
+    first_unit_name = "base"
     second_unit_name = "height"
+    first_unit = triangle_base
+    second_unit = triangle_height
+    equation = equation_types[3]
 
 # Prints the user with a text-based version of the equations provided in the program.
 
@@ -188,9 +202,33 @@ The equations associated with {}s are:
 
 # Basic question asking user for shape measurement input.
 
-user_measurement = number_checker("Please enter the {} of your {} in centimeters ".format(unit_name, shape_type))
+first_unit = number_checker("Please enter the {} of your {} in centimeters ".format(first_unit_name, shape_type))
 
-# Prints user response to above question
+# Prints user response to first question
 
 print()
-print("The {} of your {} is {:.2f}cm".format(unit_name, shape_type, user_measurement))
+print("The {} of your {} is {:.2f}cm".format(first_unit_name, shape_type, first_unit))
+
+# If there is a required second input in order to calculate a shape's measurements,
+# ... print the provided second measurement (when applicable)
+
+if second_unit_name != "":
+
+    print()
+    second_unit = number_checker(
+        "Now, please enter the {} of your {} in centimeters ".format(second_unit_name, shape_type))
+
+    # Prints user response to second question
+
+    print()
+    print("The {} of your {} is {:.2f}cm".format(second_unit_name, shape_type, second_unit))
+
+else:
+
+    print()
+    print("Okay")
+
+# Prints the solution to the relevant equation
+
+print()
+print(equation)
