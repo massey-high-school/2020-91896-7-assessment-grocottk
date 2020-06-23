@@ -164,6 +164,17 @@ if shape_type == valid_shapes[0]:
     first_unit = length
     equation = equation_types[0]
 
+# Idea for updated input method after trialing:
+
+    # Prints Follow-Up question, if needed, based on shape type
+
+    # Places given variable input into respective equation (without calling from list)
+
+    # Gives user answer (may be able to be given outside of loop)
+
+# This idea would then be repeated for all shape types in order to complete Component Requrements.
+
+
 elif shape_type == valid_shapes[1]:
 
     text_equation = text_equation_types[1]
