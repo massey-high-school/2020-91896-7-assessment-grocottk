@@ -149,6 +149,18 @@ You chose the {}'''.format(shape_type))
 
 # * Printing Shape Equation(s): *
 
+# Prints the user with a text-based version of the equations provided in the program.
+
+print('''
+The equations associated with {}s are:
+
+'{}' and
+
+[Formatting Error]
+'''.format(shape_type, text_equation_types[0]))
+
+# * Carrying out respective shape working: *
+
 # Uses 'if' and 'elif' statements in order to link input and corresponding equation
 # (This code is currently inefficient and will most likely need to be improved.)
 # [This function has been adapted from its use in Component 4, where in this program,
@@ -158,22 +170,36 @@ equation_choice = ""
 
 if shape_type == valid_shapes[0]:
 
-    text_equation = text_equation_types[0]
-    first_unit_name = "length"
-    second_unit_name = ""
-    first_unit = length
-    equation = equation_types[0]
+    # Basic question asking user for shape measurement input.
+
+    length = number_checker("Please enter the length of one of the sides of your square in centimeters ")
+
+    # Prints user response to first question
+
+    print()
+    print("The length of one side your square is {:.2f}cm".format(length))
+
+    # Runs User input through equation related to shape type
+
+    perimeter = float(length) * 4
+
+    area = float(length) * float(length)
+
+    # Prints the perimeter and area taken from user's input
+
+    print('''
+The perimeter of your given square length is {:.2f}cm,
+while the area of the shape associated with your square length is {:.2f}cm squared'''.format(perimeter, area))
 
 # Idea for updated input method after trialing:
 
-    # Prints Follow-Up question, if needed, based on shape type
+# Prints Follow-Up question, if needed, based on shape type
 
-    # Places given variable input into respective equation (without calling from list)
+# Places given variable input into respective equation (without calling from list)
 
-    # Gives user answer (may be able to be given outside of loop)
+# Gives user answer (may be able to be given outside of loop)
 
-# This idea would then be repeated for all shape types in order to complete Component Requrements.
-
+# This idea would then be repeated for all shape types in order to complete Component Requirements.
 
 elif shape_type == valid_shapes[1]:
 
@@ -200,46 +226,3 @@ elif shape_type == valid_shapes[3]:
     first_unit = triangle_base
     second_unit = triangle_height
     equation = equation_types[3]
-
-# Prints the user with a text-based version of the equations provided in the program.
-
-print('''
-The equations associated with {}s are:
-
-'{}' and
-
-'{}'
-'''.format(shape_type, text_equation[0], text_equation[1]))
-
-# Basic question asking user for shape measurement input.
-
-first_unit = number_checker("Please enter the {} of your {} in centimeters ".format(first_unit_name, shape_type))
-
-# Prints user response to first question
-
-print()
-print("The {} of your {} is {:.2f}cm".format(first_unit_name, shape_type, first_unit))
-
-# If there is a required second input in order to calculate a shape's measurements,
-# ... print the provided second measurement (when applicable)
-
-if second_unit_name != "":
-
-    print()
-    second_unit = number_checker(
-        "Now, please enter the {} of your {} in centimeters ".format(second_unit_name, shape_type))
-
-    # Prints user response to second question
-
-    print()
-    print("The {} of your {} is {:.2f}cm".format(second_unit_name, shape_type, second_unit))
-
-else:
-
-    print()
-    print("Okay")
-
-# Prints the solution to the relevant equation
-
-print()
-print(equation)
