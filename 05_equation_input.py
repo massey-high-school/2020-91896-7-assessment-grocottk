@@ -191,23 +191,35 @@ if shape_type == valid_shapes[0]:
 The perimeter of your given square length is {:.2f}cm,
 while the area of the shape associated with your square length is {:.2f}cm squared'''.format(perimeter, area))
 
-# Idea for updated input method after trialing:
-
-# Prints Follow-Up question, if needed, based on shape type
-
-# Places given variable input into respective equation (without calling from list)
-
-# Gives user answer (may be able to be given outside of loop)
-
-# This idea would then be repeated for all shape types in order to complete Component Requirements.
-
 elif shape_type == valid_shapes[1]:
 
-    text_equation = text_equation_types[1]
-    first_unit_name = "radius"
-    second_unit_name = ""
-    first_unit = radius
-    equation = equation_types[1]
+    # Basic question asking user for shape measurement input.
+
+    radius = number_checker("Please enter the radius of your circle in centimeters ")
+
+    # Prints user response to first question
+
+    print()
+    print("The radius of your circle is {:.2f}cm".format(radius))
+
+    # Runs User input through equation related to shape type
+
+    # Equations inspired by information from the webstite "Math Planet", at the following link:
+    # 'https://www.mathplanet.com/education/pre-algebra/more-about-equation-and-inequalities/calculating-the-circumference-of-a-circle'
+
+    # A Circle calculaion widget from 'Wolfram Alpha'
+    # ... was also used in the development of this program at the following link:
+    # https://www.wolframalpha.com/widgets/gallery/view.jsp?id=e0d0f4c329f9c25d945e3b500541150a
+
+    perimeter = 2 * PI * float(radius)
+
+    area = PI * (float(radius) * float(radius))
+
+    # Prints the perimeter and area taken from user's input
+
+    print('''
+The circumference of your provided circle is {:.2f}cm,
+while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
 
 elif shape_type == valid_shapes[2]:
 
