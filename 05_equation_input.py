@@ -72,17 +72,9 @@ def shape_choice(question):
 # Equation Definer (Defines all equations applicable with program for both Perimeter and Area.)
 # [This code has now been entered into the Main Routine of the Component]
 
-# Defines undefined variables (and constant) [for testing] (pairs with equation list without quotation marks)
+# Defines the constant of 'PI', in order to simplify the circle equations later in the program.
 
-length = 0
-radius = 0
 PI = 3.14159265359
-base = 0
-height = 0
-triangle_base = 0
-triangle_height = 0
-first_unit = 0
-second_unit = 0
 
 # Defines list of equations associated with various shape types
 
@@ -92,10 +84,10 @@ text_equation_types = [["length * 4", "length * length"], ["(radius * 2) * π", 
 # Defines list of equations associated with various shape types, without quotation marks.
 # ... (These should be used in the final program)
 
-equation_types = [[float(first_unit) * 4, float(first_unit) * float(first_unit)],
-                  [(float(first_unit) * 2) * PI, PI * (float(first_unit) * float(first_unit))],
-                  [(float(first_unit) * 2) + (float(second_unit) * 2), float(first_unit) * float(second_unit)],
-                  [float(first_unit) * 3, float(first_unit) * float(second_unit)]]
+# equation_types = [[float(first_unit) * 4, float(first_unit) * float(first_unit)],
+#                   [(float(first_unit) * 2) * PI, PI * (float(first_unit) * float(first_unit))],
+#                   [(float(first_unit) * 2) + (float(second_unit) * 2), float(first_unit) * float(second_unit)],
+#                   [float(first_unit) * 3, float(first_unit) * float(second_unit)]]
 
 # Number Checking Function (For floats [Numbers that allow the use of decimal points] greater than zero):
 # ... [This code was taken from Kahlil Grocott's '11_post_usability_testing_outcome.py']
@@ -145,28 +137,17 @@ shape_type = shape_choice("Please enter a shape from the following{} ".format(sh
 # Prints the user's shape choice for testing
 
 print('''
-You chose the {}'''.format(shape_type))
-
-# * Printing Shape Equation(s): *
-
-# Prints the user with a text-based version of the equations provided in the program.
-
-print('''
-The equations associated with {}s are:
-
-'{}' and
-
-[Formatting Error]
-'''.format(shape_type, text_equation_types[0]))
+You chose the {}
+'''.format(shape_type))
 
 # * Carrying out respective shape working: *
 
 # Uses 'if' and 'elif' statements in order to link input and corresponding equation
 # (This code is currently inefficient and will most likely need to be improved.)
 # [This function has been adapted from its use in Component 4, where in this program,
-# ... its functionality as a piece of code will be improved.)
+# ... its functionality as a piece of code will be improved.]
 
-equation_choice = ""
+# If the desired shape is a square, carry out the following:
 
 if shape_type == valid_shapes[0]:
 
@@ -188,8 +169,10 @@ if shape_type == valid_shapes[0]:
     # Prints the perimeter and area taken from user's input
 
     print('''
-The perimeter of your given square length is {:.2f}cm,
-while the area of the shape associated with your square length is {:.2f}cm squared'''.format(perimeter, area))
+The perimeter of your square is {:.2f}cm,
+while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
+
+# Otherwise, if the desired shape is a circle, carry out the following:
 
 elif shape_type == valid_shapes[1]:
 
@@ -204,10 +187,11 @@ elif shape_type == valid_shapes[1]:
 
     # Runs User input through equation related to shape type
 
-    # Equations inspired by information from the webstite "Math Planet", at the following link:
-    # 'https://www.mathplanet.com/education/pre-algebra/more-about-equation-and-inequalities/calculating-the-circumference-of-a-circle'
+    # Equations inspired by information from the website "Math Planet", at the following link:
+    # 'https://www.mathplanet.com/education/pre-algebra/
+    # more-about-equation-and-inequalities/calculating-the-circumference-of-a-circle'
 
-    # A Circle calculaion widget from 'Wolfram Alpha'
+    # A Circle calculation widget from 'Wolfram Alpha'
     # ... was also used in the development of this program at the following link:
     # https://www.wolframalpha.com/widgets/gallery/view.jsp?id=e0d0f4c329f9c25d945e3b500541150a
 
@@ -221,20 +205,63 @@ elif shape_type == valid_shapes[1]:
 The circumference of your provided circle is {:.2f}cm,
 while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
 
+# Otherwise, if the desired shape is a rectangle, carry out the following:
+
 elif shape_type == valid_shapes[2]:
 
-    text_equation = text_equation_types[2]
-    first_unit_name = "base"
-    second_unit_name = "height"
-    first_unit = base
-    second_unit = height
-    equation = equation_types[2]
+    # Basic question asking user for shape measurement input.
+
+    base = number_checker("Please enter the length of the shortest side of your rectangle in centimeters ")
+
+    # Basic question asking user for the second required shape measurement.
+
+    height = number_checker("Please enter the length of the longest side of your rectangle in centimeters ")
+
+    # Prints user response to above question
+
+    print()
+    print("The base of your rectangle is {:.2f}cm, while the height of your rectangle is {:.2f}cm"
+          .format(base, height))
+
+    # Runs User input through equation related to shape type
+
+    perimeter = (float(base) * 2) + (float(height) * 2)
+
+    area = float(base) * float(height)
+
+    # Prints the perimeter and area taken from user's input
+
+    print('''
+The perimeter of your rectangle is {:.2f}cm,
+while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
+
+# Otherwise, if the desired shape is a triangle, carry out the following:
 
 elif shape_type == valid_shapes[3]:
 
-    text_equation = text_equation_types[3]
-    first_unit_name = "base"
-    second_unit_name = "height"
-    first_unit = triangle_base
-    second_unit = triangle_height
-    equation = equation_types[3]
+    # Basic question asking user for shape measurement input.
+
+    triangle_base = number_checker("Please enter the length of the base of your triangle in centimeters ")
+
+    # Basic question asking user for the second required shape measurement.
+
+    triangle_height = number_checker('''Please enter the height (from the base to the top of the equilateral triangle)
+of your triangle in centimeters ''')
+
+    # Prints user response to above question
+
+    print()
+    print("The base of your triangle is {:.2f}cm, while the height of your triangle is {:.2f}cm"
+          .format(triangle_base, triangle_height))
+
+    # Runs User input through equation related to shape type
+
+    perimeter = float(triangle_base) * 3
+
+    area = (float(triangle_base) * float(triangle_height)) / 2
+
+    # Prints the perimeter and area taken from user's input
+
+    print('''
+The perimeter of your triangle is {:.2f}cm,
+while the area of your triangle is {:.2f}cm squared'''.format(perimeter, area))
