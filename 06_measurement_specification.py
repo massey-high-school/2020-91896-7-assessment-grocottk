@@ -109,6 +109,89 @@ def number_checker(question):
 
         except ValueError:
 
-            print(error)
+            print(error)\
+
+# Specific Measurement Checker (Checks to see which measurement type has been chosen from the two options given)
+# ... [This program is a customised version of the '02_yes_no_checker.py' by Ms. Gottschalk which checks shape types]
+# ... (This program is also adapted from the above shape checker)
+
+# Defines list of valid specific measurents to check against
+
+measurement_types = ["area", "perimeter"]
+
+
+def measurement_choice(question):
+
+    # Begin Loop
+
+    valid = False
+    while not valid:
+
+        # Defines response variable (as well as converting input into all lowercase letters)
+
+        response = input(question).lower()
+
+        # Checks input against the valid shapes in the 'measurement_types' list
+
+        for item in measurement_types:
+
+            # If the response is in the measurement types list, return the response
+
+            if response == item:
+
+                return response
+
+            # If either of the letters 'a' or 'e' are entered, return the corresponding measurement type.
+
+            elif response == item[0]:
+
+                return item
+
+        # Otherwise, print an error message
+
+        print("Please enter either 'Perimeter' or 'Area' ")
 
 # *** Main Routine: ***
+
+# Asks the user for their desired measurement type, between the options of 'Perimeter' or 'Area'
+
+area_or_perimeter = measurement_choice("What are the measurements that you would like to calculate "
+                                       "for your chosen shape. Please enter either ‘Perimeter’ or ‘Area’ ")
+
+# If the user chooses to find the area, print a given message
+
+if area_or_perimeter == "area":
+
+    print("You have chosen to find the area of your shape")
+    print()
+
+    # Prints the possible equations, and required measurements for those equations.
+
+    print("The equation for the area of a square is length * length, meaning that length must be entered")
+    print()
+    print("The equation for the area of a circle is π * (radius^2), meaning that the radius must be entered")
+    print()
+    print("The equation for the area of a rectangle is base * height, "
+          "meaning that both the base and height of the rectangle must be entered")
+    print()
+    print("The equation for the area of a triangle is triangle side * triangle height, "
+          "meaning that both the base and height of your triangle must be entered")
+
+# If the user chooses to find the perimeter, print a given message
+
+elif area_or_perimeter == "perimeter":
+
+    print("You have chosen to find the perimeter of your shape")
+    print()
+
+    # Prints the possible equations, and required measurements for those equations.
+
+    print("The equation for the perimeter of a square is length * 4, meaning that length must be entered")
+    print()
+    print("The equation for the area of a perimeter is (radius * 2) * π, meaning that the radius must be entered")
+    print()
+    print("The equation for the perimeter of a rectangle is (base * 2) + (height * 2), "
+          "meaning that both the base and height of the rectangle must be entered")
+    print()
+    print("The equation for the perimeter of a triangle is side * 3, "
+          "meaning that only the length of the side of your triangle must be entered")
