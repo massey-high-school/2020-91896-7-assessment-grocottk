@@ -162,6 +162,7 @@ area_or_perimeter = measurement_choice("What are the measurements that you would
 
 if area_or_perimeter == "area":
 
+    print()
     print("You have chosen to find the area of your shape")
     print()
 
@@ -169,7 +170,7 @@ if area_or_perimeter == "area":
 
     print("The equation for the area of a square is length * length, meaning that length must be entered")
     print()
-    print("The equation for the area of a circle is π * (radius^2), meaning that the radius must be entered")
+    print("The equation for the area of a circle is π * (radius ^ 2), meaning that the radius must be entered")
     print()
     print("The equation for the area of a rectangle is base * height, "
           "meaning that both the base and height of the rectangle must be entered")
@@ -178,9 +179,12 @@ if area_or_perimeter == "area":
           "meaning that both the base and height of your triangle must be entered")
 
 # If the user chooses to find the perimeter, print a given message
+# (If the 'area_or_perimeter' variable is not read as 'area', we can then assume
+# ... that the user has asked for a perimeter)
 
-elif area_or_perimeter == "perimeter":
+else:
 
+    print()
     print("You have chosen to find the perimeter of your shape")
     print()
 
@@ -194,4 +198,4 @@ elif area_or_perimeter == "perimeter":
           "meaning that both the base and height of the rectangle must be entered")
     print()
     print("The equation for the perimeter of a triangle is side * 3, "
-          "meaning that only the length of the side of your triangle must be entered")
+          "meaning that only the length of one side of your triangle must be entered")
