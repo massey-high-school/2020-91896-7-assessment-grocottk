@@ -115,7 +115,7 @@ def number_checker(question):
 # ... [This program is a customised version of the '02_yes_no_checker.py' by Ms. Gottschalk which checks shape types]
 # ... (This program is also adapted from the above shape checker)
 
-# Defines list of valid specific measurents to check against
+# Defines list of valid specific measurements to check against
 
 measurement_types = ["area", "perimeter"]
 
