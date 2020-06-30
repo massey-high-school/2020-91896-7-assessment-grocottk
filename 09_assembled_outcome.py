@@ -260,6 +260,19 @@ elif program_experience == "no":
 
 # * Beginning of Round Loop: * (Code inspired by looping system in 'RPS_06_Loop_Game.py' by [Myself] Kahlil Grocott)
 
+# Defines 'all_round_statistics' list that will ultimately contain all of the working
+# ... and results from all Rounds of the program.
+
+
+all_round_statistics = []
+
+# Beginning of Round Loop (Code inspired by looping system in 'RPS_06_Loop_Game.py' by [Myself] Kahlil Grocott)
+
+# Defines 'questions_solved' variable
+# ... (Round Counting in program inspired by the GIST 'RPS_07.1_Round_Counter_Alone.py' by myself [Kahlil Grocott])
+
+questions_solved = 0
+
 # Defines Loop Variable
 
 loop = ""
@@ -268,70 +281,25 @@ loop = ""
 
 while loop == "":
 
+    # Defines or 'Empties' the 'round_statistics' list at the beginning of every question
+
+    round_statistics = []
+
+    # Adds one to the program's 'questions_solved' variable in order to show Question information in final summary.
+
+    questions_solved = questions_solved + 1
+
     # * Receiving Shape Type: * [Inspired by subheadings from '11_post_usability_testing_outcome.py' by Kahlil Grocott]
 
     # Prints the formatted, editable shape list to gain input
 
     shape_type = shape_choice("Please enter a shape from the following{} ".format(shape_list_formatting()))
 
-    # * Printing Shape Equation(s): *
-
-    # Uses 'if' and 'elif' statements in order to link input and corresponding equation
-    # (This code is currently inefficient and will most likely need to be improved.)
-
-    equation_choice = ""
-
-    if shape_type == valid_shapes[0]:
-
-        equation_choice = (equation_types[0])
-
-    elif shape_type == valid_shapes[1]:
-
-        equation_choice = (equation_types[1])
-
-    elif shape_type == valid_shapes[2]:
-
-        equation_choice = (equation_types[2])
-
-    elif shape_type == valid_shapes[3]:
-
-        equation_choice = (equation_types[3])
-
-    # Prints a text-based version of the equations provided in the program.
+    # Prints the user's shape choice for testing
 
     print('''
-The equations associated with {}s are:
-
-'{}' and
-
-'{}'
-    '''.format(shape_type, equation_choice[0], equation_choice[1]))
-
-    # * Measurement Specification: *
-
-    # Asks the user for their desired measurement type, between the options of 'Perimeter' or 'Area'
-
-    area_or_perimeter = measurement_choice("What are the measurements that you would like to calculate "
-                                           "for your chosen shape. Please enter either ‘Perimeter’ or ‘Area’ ")
-
-    # If the user chooses to find the area, print a given message
-
-    if area_or_perimeter == "area":
-
-        chosen_measurement = "area"
-
-    else:
-
-        chosen_measurement = "perimeter"
-
-    print(chosen_measurement)
-
-    # * Carrying out respective shape working: *
-
-    # Uses 'if' and 'elif' statements in order to link input and corresponding equation
-    # (This code is currently inefficient and will most likely need to be improved.)
-    # [This function has been adapted from its use in Component 4, where in this program,
-    # ... its functionality as a piece of code will be improved.]
+You chose the {}
+    '''.format(shape_type))
 
     # If the desired shape is a square, carry out the following:
 
@@ -357,6 +325,30 @@ The equations associated with {}s are:
         print('''
 The perimeter of your square is {:.2f}cm,
 while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
+
+        # Appends list 'round_statistics' with all important statistics from Round
+        # (Reminder of how to use the 'append.' function taken from '10_assembled_outcome.py'
+        # ... by myself [Kahlil Grocott])
+
+        # Appends the round's Round Number to the 'round_statistics' list
+
+        round_statistics.append(questions_solved)
+
+        # Appends the type of shape calculated in the round to the 'round_statistics' list
+
+        round_statistics.append(valid_shapes[0])
+
+        # Appends the user's given measurement of the shape to the 'round_statistics' list
+
+        round_statistics.append(length)
+
+        # Appends the perimeter of the shape to the 'round_statistics' list
+
+        round_statistics.append(perimeter)
+
+        # Appends the area of the shape to the 'round_statistics' list
+
+        round_statistics.append(area)
 
     # Otherwise, if the desired shape is a circle, carry out the following:
 
@@ -391,6 +383,30 @@ while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
 The circumference of your provided circle is {:.2f}cm,
 while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
 
+        # Appends list 'round_statistics' with all important statistics from Round
+        # (Reminder of how to use the 'append.' function taken from '10_assembled_outcome.py'
+        # ... by myself [Kahlil Grocott])
+
+        # Appends the round's Round Number to the 'round_statistics' list
+
+        round_statistics.append(questions_solved)
+
+        # Appends the type of shape calculated in the round to the 'round_statistics' list
+
+        round_statistics.append(valid_shapes[1])
+
+        # Appends the user's given measurement of the shape to the 'round_statistics' list
+
+        round_statistics.append(radius)
+
+        # Appends the perimeter of the shape to the 'round_statistics' list
+
+        round_statistics.append(perimeter)
+
+        # Appends the area of the shape to the 'round_statistics' list
+
+        round_statistics.append(area)
+
     # Otherwise, if the desired shape is a rectangle, carry out the following:
 
     elif shape_type == valid_shapes[2]:
@@ -420,6 +436,34 @@ while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
         print('''
 The perimeter of your rectangle is {:.2f}cm,
 while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
+
+        # Appends list 'round_statistics' with all important statistics from Round
+        # (Reminder of how to use the 'append.' function taken from '10_assembled_outcome.py'
+        # ... by myself [Kahlil Grocott])
+
+        # Appends the round's Round Number to the 'round_statistics' list
+
+        round_statistics.append(questions_solved)
+
+        # Appends the type of shape calculated in the round to the 'round_statistics' list
+
+        round_statistics.append(valid_shapes[2])
+
+        # Appends the user's first given measurement of the shape to the 'round_statistics' list
+
+        round_statistics.append(base)
+
+        # Appends the user's second given measurement of the shape to the 'round_statistics' list
+
+        round_statistics.append(height)
+
+        # Appends the perimeter of the shape to the 'round_statistics' list
+
+        round_statistics.append(perimeter)
+
+        # Appends the area of the shape to the 'round_statistics' list
+
+        round_statistics.append(area)
 
     # Otherwise, if the desired shape is a triangle, carry out the following:
 
@@ -451,12 +495,44 @@ while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
 The perimeter of your triangle is {:.2f}cm,
 while the area of your triangle is {:.2f}cm squared'''.format(perimeter, area))
 
+        # Appends list 'round_statistics' with all important statistics from Round
+        # (Reminder of how to use the 'append.' function taken from '10_assembled_outcome.py'
+        # ... by myself [Kahlil Grocott])
+
+        # Appends the round's Round Number to the 'round_statistics' list
+
+        round_statistics.append(questions_solved)
+
+        # Appends the type of shape calculated in the round to the 'round_statistics' list
+
+        round_statistics.append(valid_shapes[3])
+
+        # Appends the user's first given measurement of the shape to the 'round_statistics' list
+
+        round_statistics.append(triangle_base)
+
+        # Appends the user's second given measurement of the shape to the 'round_statistics' list
+
+        round_statistics.append(triangle_height)
+
+        # Appends the perimeter of the shape to the 'round_statistics' list
+
+        round_statistics.append(perimeter)
+
+    # Appends all individual round information into 'all_round_statistics' list
+
+    all_round_statistics.append(round_statistics)
+
     # Asks the user whether they would like to exit the Round Loop
 
     loop = input('''
 Would you like to calculate the measurements of another shape?
 Enter <enter> to continue, or any other key to exit the Geometry Calculator ''')
     print()
+
+# Prints all information related to 'all_round_statistics' without formatting (for testing)
+
+print(all_round_statistics)
 
 # Thanks the user for using the Geometry Calculator before exiting the program.
 

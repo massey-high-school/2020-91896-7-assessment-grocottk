@@ -126,11 +126,11 @@ def number_checker(question):
 
 # *** Main Routine: ***
 
-# Defines lists that will ultimately contain all of the working and results from all Rounds of the program.
+# Defines 'all_round_statistics' list that will ultimately contain all of the working
+# ... and results from all Rounds of the program.
 
 
 all_round_statistics = []
-
 
 # Beginning of Round Loop (Code inspired by looping system in 'RPS_06_Loop_Game.py' by [Myself] Kahlil Grocott)
 
