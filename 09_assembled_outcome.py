@@ -193,6 +193,46 @@ PI = 3.14159265359
 equation_types = [["length * 4", "length * length"], ["(radius * 2) * π", "π * (radius^2)"],
                   ["(base * 2) + (height * 2)", "base * height"], ["side * 3", "side * triangle_height"]]
 
+# Specific Measurement Checker (Checks to see which measurement type has been chosen from the two options given)
+# ... [This program is a customised version of the '02_yes_no_checker.py' by Ms. Gottschalk which checks shape types]
+# ... (This program is also adapted from the above shape checker)
+
+# Defines list of valid specific measurements to check against
+
+measurement_types = ["area", "perimeter"]
+
+
+def measurement_choice(question):
+
+    # Begin Loop
+
+    valid = False
+    while not valid:
+
+        # Defines response variable (as well as converting input into all lowercase letters)
+
+        response = input(question).lower()
+
+        # Checks input against the valid shapes in the 'measurement_types' list
+
+        for item in measurement_types:
+
+            # If the response is in the measurement types list, return the response
+
+            if response == item:
+
+                return response
+
+            # If either of the letters 'a' or 'e' are entered, return the corresponding measurement type.
+
+            elif response == item[0]:
+
+                return item
+
+        # Otherwise, print an error message
+
+        print("Please enter either 'Perimeter' or 'Area' ")
+
 # *** Main Routine: ***
 
 # * Calculator initialisation: *
@@ -218,173 +258,206 @@ elif program_experience == "no":
 
     instructions()
 
-# *** Main Routine: ***
+# * Beginning of Round Loop: * (Code inspired by looping system in 'RPS_06_Loop_Game.py' by [Myself] Kahlil Grocott)
 
-# Prints the formatted, editable shape list to gain input
+# Defines Loop Variable
 
-shape_type = shape_choice("Please enter a shape from the following{} ".format(shape_list_formatting()))
+loop = ""
 
-# Prints the user's shape choice for testing
+# While the loop variable is defined as blank (or <enter>), continue the Round Loop
 
-print('''
-You chose the {}
-'''.format(shape_type))
+while loop == "":
 
-# * Printing Shape Equation(s): *
+    # * Receiving Shape Type: * [Inspired by subheadings from '11_post_usability_testing_outcome.py' by Kahlil Grocott]
 
-# Uses 'if' and 'elif' statements in order to link input and corresponding equation
-# (This code is currently inefficient and will most likely need to be improved.)
+    # Prints the formatted, editable shape list to gain input
 
-equation_choice = ""
+    shape_type = shape_choice("Please enter a shape from the following{} ".format(shape_list_formatting()))
 
-if shape_type == valid_shapes[0]:
+    # * Printing Shape Equation(s): *
 
-    equation_choice = (equation_types[0])
+    # Uses 'if' and 'elif' statements in order to link input and corresponding equation
+    # (This code is currently inefficient and will most likely need to be improved.)
 
-elif shape_type == valid_shapes[1]:
+    equation_choice = ""
 
-    equation_choice = (equation_types[1])
+    if shape_type == valid_shapes[0]:
 
-elif shape_type == valid_shapes[2]:
+        equation_choice = (equation_types[0])
 
-    equation_choice = (equation_types[2])
+    elif shape_type == valid_shapes[1]:
 
-elif shape_type == valid_shapes[3]:
+        equation_choice = (equation_types[1])
 
-    equation_choice = (equation_types[3])
+    elif shape_type == valid_shapes[2]:
 
-# Prints a text-based version of the equations provided in the program.
+        equation_choice = (equation_types[2])
 
-print('''
+    elif shape_type == valid_shapes[3]:
+
+        equation_choice = (equation_types[3])
+
+    # Prints a text-based version of the equations provided in the program.
+
+    print('''
 The equations associated with {}s are:
 
 '{}' and
 
 '{}'
-'''.format(shape_type, equation_choice[0], equation_choice[1]))
+    '''.format(shape_type, equation_choice[0], equation_choice[1]))
 
-# * Carrying out respective shape working: *
+    # * Measurement Specification: *
 
-# Uses 'if' and 'elif' statements in order to link input and corresponding equation
-# (This code is currently inefficient and will most likely need to be improved.)
-# [This function has been adapted from its use in Component 4, where in this program,
-# ... its functionality as a piece of code will be improved.]
+    # Asks the user for their desired measurement type, between the options of 'Perimeter' or 'Area'
 
-# If the desired shape is a square, carry out the following:
+    area_or_perimeter = measurement_choice("What are the measurements that you would like to calculate "
+                                           "for your chosen shape. Please enter either ‘Perimeter’ or ‘Area’ ")
 
-if shape_type == valid_shapes[0]:
+    # If the user chooses to find the area, print a given message
 
-    # Basic question asking user for shape measurement input.
+    if area_or_perimeter == "area":
 
-    length = number_checker("Please enter the length of one of the sides of your square in centimeters ")
+        chosen_measurement = "area"
 
-    # Prints user response to first question
+    else:
 
-    print()
-    print("The length of one side your square is {:.2f}cm".format(length))
+        chosen_measurement = "perimeter"
 
-    # Runs User input through equation related to shape type
+    print(chosen_measurement)
 
-    perimeter = float(length) * 4
+    # * Carrying out respective shape working: *
 
-    area = float(length) * float(length)
+    # Uses 'if' and 'elif' statements in order to link input and corresponding equation
+    # (This code is currently inefficient and will most likely need to be improved.)
+    # [This function has been adapted from its use in Component 4, where in this program,
+    # ... its functionality as a piece of code will be improved.]
 
-    # Prints the perimeter and area taken from user's input
+    # If the desired shape is a square, carry out the following:
 
-    print('''
+    if shape_type == valid_shapes[0]:
+
+        # Basic question asking user for shape measurement input.
+
+        length = number_checker("Please enter the length of one of the sides of your square in centimeters ")
+
+        # Prints user response to first question
+
+        print()
+        print("The length of one side your square is {:.2f}cm".format(length))
+
+        # Runs User input through equation related to shape type
+
+        perimeter = float(length) * 4
+
+        area = float(length) * float(length)
+
+        # Prints the perimeter and area taken from user's input
+
+        print('''
 The perimeter of your square is {:.2f}cm,
 while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
 
-# Otherwise, if the desired shape is a circle, carry out the following:
+    # Otherwise, if the desired shape is a circle, carry out the following:
 
-elif shape_type == valid_shapes[1]:
+    elif shape_type == valid_shapes[1]:
 
-    # Basic question asking user for shape measurement input.
+        # Basic question asking user for shape measurement input.
 
-    radius = number_checker("Please enter the radius of your circle in centimeters ")
+        radius = number_checker("Please enter the radius of your circle in centimeters ")
 
-    # Prints user response to first question
+        # Prints user response to first question
 
-    print()
-    print("The radius of your circle is {:.2f}cm".format(radius))
+        print()
+        print("The radius of your circle is {:.2f}cm".format(radius))
 
-    # Runs User input through equation related to shape type
+        # Runs User input through equation related to shape type
 
-    # Equations inspired by information from the website "Math Planet", at the following link:
-    # 'https://www.mathplanet.com/education/pre-algebra/
-    # more-about-equation-and-inequalities/calculating-the-circumference-of-a-circle'
+        # Equations inspired by information from the website "Math Planet", at the following link:
+        # 'https://www.mathplanet.com/education/pre-algebra/
+        # more-about-equation-and-inequalities/calculating-the-circumference-of-a-circle'
 
-    # A Circle calculation widget from 'Wolfram Alpha'
-    # ... was also used in the development of this program at the following link:
-    # https://www.wolframalpha.com/widgets/gallery/view.jsp?id=e0d0f4c329f9c25d945e3b500541150a
+        # A Circle calculation widget from 'Wolfram Alpha'
+        # ... was also used in the development of this program at the following link:
+        # https://www.wolframalpha.com/widgets/gallery/view.jsp?id=e0d0f4c329f9c25d945e3b500541150a
 
-    perimeter = 2 * PI * float(radius)
+        perimeter = 2 * PI * float(radius)
 
-    area = PI * (float(radius) * float(radius))
+        area = PI * (float(radius) * float(radius))
 
-    # Prints the perimeter and area taken from user's input
+        # Prints the perimeter and area taken from user's input
 
-    print('''
+        print('''
 The circumference of your provided circle is {:.2f}cm,
 while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
 
-# Otherwise, if the desired shape is a rectangle, carry out the following:
+    # Otherwise, if the desired shape is a rectangle, carry out the following:
 
-elif shape_type == valid_shapes[2]:
+    elif shape_type == valid_shapes[2]:
 
-    # Basic question asking user for shape measurement input.
+        # Basic question asking user for shape measurement input.
 
-    base = number_checker("Please enter the length of the shortest side of your rectangle in centimeters ")
+        base = number_checker("Please enter the length of the shortest side of your rectangle in centimeters ")
 
-    # Basic question asking user for the second required shape measurement.
+        # Basic question asking user for the second required shape measurement.
 
-    height = number_checker("Please enter the length of the longest side of your rectangle in centimeters ")
+        height = number_checker("Please enter the length of the longest side of your rectangle in centimeters ")
 
-    # Prints user response to above question
+        # Prints user response to above question
 
-    print()
-    print("The base of your rectangle is {:.2f}cm, while the height of your rectangle is {:.2f}cm"
-          .format(base, height))
+        print()
+        print("The base of your rectangle is {:.2f}cm, while the height of your rectangle is {:.2f}cm"
+              .format(base, height))
 
-    # Runs User input through equation related to shape type
+        # Runs User input through equation related to shape type
 
-    perimeter = (float(base) * 2) + (float(height) * 2)
+        perimeter = (float(base) * 2) + (float(height) * 2)
 
-    area = float(base) * float(height)
+        area = float(base) * float(height)
 
-    # Prints the perimeter and area taken from user's input
+        # Prints the perimeter and area taken from user's input
 
-    print('''
+        print('''
 The perimeter of your rectangle is {:.2f}cm,
 while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
 
-# Otherwise, if the desired shape is a triangle, carry out the following:
+    # Otherwise, if the desired shape is a triangle, carry out the following:
 
-elif shape_type == valid_shapes[3]:
+    elif shape_type == valid_shapes[3]:
 
-    # Basic question asking user for shape measurement input.
+        # Basic question asking user for shape measurement input.
 
-    triangle_base = number_checker("Please enter the length of the base of your triangle in centimeters ")
+        triangle_base = number_checker("Please enter the length of the base of your triangle in centimeters ")
 
-    # Basic question asking user for the second required shape measurement.
+        # Basic question asking user for the second required shape measurement.
 
-    triangle_height = number_checker('''Please enter the height (from the base to the top of the equilateral triangle)
-of your triangle in centimeters ''')
+        triangle_height = number_checker('''Please enter the total vertical height of your triangle in centimeters ''')
 
-    # Prints user response to above question
+        # Prints user response to above question
 
-    print()
-    print("The base of your triangle is {:.2f}cm, while the height of your triangle is {:.2f}cm"
-          .format(triangle_base, triangle_height))
+        print()
+        print("The base of your triangle is {:.2f}cm, while the height of your triangle is {:.2f}cm"
+              .format(triangle_base, triangle_height))
 
-    # Runs User input through equation related to shape type
+        # Runs User input through equation related to shape type
 
-    perimeter = float(triangle_base) * 3
+        perimeter = float(triangle_base) * 3
 
-    area = (float(triangle_base) * float(triangle_height)) / 2
+        area = (float(triangle_base) * float(triangle_height)) / 2
 
-    # Prints the perimeter and area taken from user's input
+        # Prints the perimeter and area taken from user's input
 
-    print('''
+        print('''
 The perimeter of your triangle is {:.2f}cm,
 while the area of your triangle is {:.2f}cm squared'''.format(perimeter, area))
+
+    # Asks the user whether they would like to exit the Round Loop
+
+    loop = input('''
+Would you like to calculate the measurements of another shape?
+Enter <enter> to continue, or any other key to exit the Geometry Calculator ''')
+    print()
+
+# Thanks the user for using the Geometry Calculator before exiting the program.
+
+statement_generator("Thank you for using the Geometry Calculator", "@")
