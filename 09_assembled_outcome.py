@@ -187,12 +187,6 @@ def number_checker(question):
 
 PI = 3.14159265359
 
-# Defines list of equations associated with various shape types
-
-
-equation_types = [["length * 4", "length * length"], ["(radius * 2) * π", "π * (radius^2)"],
-                  ["(base * 2) + (height * 2)", "base * height"], ["side * 3", "side * triangle_height"]]
-
 # Specific Measurement Checker (Checks to see which measurement type has been chosen from the two options given)
 # ... [This program is a customised version of the '02_yes_no_checker.py' by Ms. Gottschalk which checks shape types]
 # ... (This program is also adapted from the above shape checker)
@@ -233,10 +227,20 @@ def measurement_choice(question):
 
         print("Please enter either 'Perimeter' or 'Area' ")
 
+# Defines 'all_round_statistics' list that will ultimately contain all of the working
+# ... and results from all Rounds of the program.
+
+
+all_round_statistics = []
+
+# Defines 'questions_solved' variable
+# ... (Round Counting in program inspired by the GIST 'RPS_07.1_Round_Counter_Alone.py' by myself [Kahlil Grocott])
+
+questions_solved = 0
+
 # *** Main Routine: ***
 
-# * Calculator initialisation: *
-
+# * Calculator Introduction: * [Inspired by subheadings from '11_post_usability_testing_outcome.py' by Kahlil Grocott]
 
 # Prints Title
 
@@ -246,7 +250,7 @@ statement_generator("Welcome to the Geometry Calculator", "*")
 
 program_experience = yes_no("Have you used this program before? ")
 
-# If the user answers yes, continue the program
+# If the user answers yes, print an empty print statement and continue the program
 
 if program_experience == "yes":
 
@@ -260,19 +264,6 @@ elif program_experience == "no":
 
 # * Beginning of Round Loop: * (Code inspired by looping system in 'RPS_06_Loop_Game.py' by [Myself] Kahlil Grocott)
 
-# Defines 'all_round_statistics' list that will ultimately contain all of the working
-# ... and results from all Rounds of the program.
-
-
-all_round_statistics = []
-
-# Beginning of Round Loop (Code inspired by looping system in 'RPS_06_Loop_Game.py' by [Myself] Kahlil Grocott)
-
-# Defines 'questions_solved' variable
-# ... (Round Counting in program inspired by the GIST 'RPS_07.1_Round_Counter_Alone.py' by myself [Kahlil Grocott])
-
-questions_solved = 0
-
 # Defines Loop Variable
 
 loop = ""
@@ -281,25 +272,20 @@ loop = ""
 
 while loop == "":
 
-    # Defines or 'Empties' the 'round_statistics' list at the beginning of every question
+    # Defines or 'Empties' the 'round_statistics' list at the beginning of every question asked
 
     round_statistics = []
 
-    # Adds one to the program's 'questions_solved' variable in order to show Question information in final summary.
+    # Adds one to the program's 'questions_solved' variable in order to show as Question information in final summary.
+    # (Increment code inspired by https://reeborg.ca/docs/en/variables/increment.html)
 
-    questions_solved = questions_solved + 1
+    questions_solved += 1
 
-    # * Receiving Shape Type: * [Inspired by subheadings from '11_post_usability_testing_outcome.py' by Kahlil Grocott]
+    # * Receiving Shape Type: *
 
-    # Prints the formatted, editable shape list to gain input
+    # Prints the formatted and easily editable shape list to gain input from the user on their desired shape type
 
     shape_type = shape_choice("Please enter a shape from the following{} ".format(shape_list_formatting()))
-
-    # Prints the user's shape choice for testing
-
-    print('''
-You chose the {}
-    '''.format(shape_type))
 
     # If the desired shape is a square, carry out the following:
 
@@ -308,11 +294,6 @@ You chose the {}
         # Basic question asking user for shape measurement input.
 
         length = number_checker("Please enter the length of one of the sides of your square in centimeters ")
-
-        # Prints user response to first question
-
-        print()
-        print("The length of one side your square is {:.2f}cm".format(length))
 
         # Runs User input through equation related to shape type
 
@@ -326,11 +307,11 @@ You chose the {}
 The perimeter of your square is {:.2f}cm,
 while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
 
-        # Appends list 'round_statistics' with all important statistics from Round
+        # Appends list 'round_statistics' list with all available statistics from Round
         # (Reminder of how to use the 'append.' function taken from '10_assembled_outcome.py'
         # ... by myself [Kahlil Grocott])
 
-        # Appends the round's Round Number to the 'round_statistics' list
+        # Appends the number of questions solved in the program up until this point to the 'round_statistics' list
 
         round_statistics.append(questions_solved)
 
@@ -358,20 +339,14 @@ while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
 
         radius = number_checker("Please enter the radius of your circle in centimeters ")
 
-        # Prints user response to first question
-
-        print()
-        print("The radius of your circle is {:.2f}cm".format(radius))
-
         # Runs User input through equation related to shape type
 
         # Equations inspired by information from the website "Math Planet", at the following link:
         # 'https://www.mathplanet.com/education/pre-algebra/
         # more-about-equation-and-inequalities/calculating-the-circumference-of-a-circle'
 
-        # A Circle calculation widget from 'Wolfram Alpha'
-        # ... was also used in the development of this program at the following link:
-        # https://www.wolframalpha.com/widgets/gallery/view.jsp?id=e0d0f4c329f9c25d945e3b500541150a
+        # A Circle calculation widget from 'Wolfram Alpha' was also used in the development of this program at the
+        # ... following link: https://www.wolframalpha.com/widgets/gallery/view.jsp?id=e0d0f4c329f9c25d945e3b500541150a
 
         perimeter = 2 * PI * float(radius)
 
@@ -387,7 +362,7 @@ while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
         # (Reminder of how to use the 'append.' function taken from '10_assembled_outcome.py'
         # ... by myself [Kahlil Grocott])
 
-        # Appends the round's Round Number to the 'round_statistics' list
+        # Appends the number of questions solved in the program up until this point to the 'round_statistics' list
 
         round_statistics.append(questions_solved)
 
@@ -419,12 +394,6 @@ while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
 
         height = number_checker("Please enter the length of the longest side of your rectangle in centimeters ")
 
-        # Prints user response to above question
-
-        print()
-        print("The base of your rectangle is {:.2f}cm, while the height of your rectangle is {:.2f}cm"
-              .format(base, height))
-
         # Runs User input through equation related to shape type
 
         perimeter = (float(base) * 2) + (float(height) * 2)
@@ -441,7 +410,7 @@ while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
         # (Reminder of how to use the 'append.' function taken from '10_assembled_outcome.py'
         # ... by myself [Kahlil Grocott])
 
-        # Appends the round's Round Number to the 'round_statistics' list
+        # Appends the number of questions solved in the program up until this point to the 'round_statistics' list
 
         round_statistics.append(questions_solved)
 
@@ -475,13 +444,7 @@ while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
 
         # Basic question asking user for the second required shape measurement.
 
-        triangle_height = number_checker('''Please enter the total vertical height of your triangle in centimeters ''')
-
-        # Prints user response to above question
-
-        print()
-        print("The base of your triangle is {:.2f}cm, while the height of your triangle is {:.2f}cm"
-              .format(triangle_base, triangle_height))
+        triangle_height = number_checker("Please enter the total vertical height of your triangle in centimeters ")
 
         # Runs User input through equation related to shape type
 
@@ -499,7 +462,7 @@ while the area of your triangle is {:.2f}cm squared'''.format(perimeter, area))
         # (Reminder of how to use the 'append.' function taken from '10_assembled_outcome.py'
         # ... by myself [Kahlil Grocott])
 
-        # Appends the round's Round Number to the 'round_statistics' list
+        # Appends the number of questions solved in the program up until this point to the 'round_statistics' list
 
         round_statistics.append(questions_solved)
 
@@ -519,6 +482,10 @@ while the area of your triangle is {:.2f}cm squared'''.format(perimeter, area))
 
         round_statistics.append(perimeter)
 
+        # Appends the area of the shape to the 'round_statistics' list
+
+        round_statistics.append(area)
+
     # Appends all individual round information into 'all_round_statistics' list
 
     all_round_statistics.append(round_statistics)
@@ -530,9 +497,28 @@ Would you like to calculate the measurements of another shape?
 Enter <enter> to continue, or any other key to exit the Geometry Calculator ''')
     print()
 
-# Prints all information related to 'all_round_statistics' without formatting (for testing)
+# * Calculator Conclusion: *
 
-print(all_round_statistics)
+# Formatted Information array (original inspiration taken from many sources, including 'geekidharsh' on
+# ... stackoverflow.com, however inspiration ultimately taken from Ms. Gottschalk's 'sandpit.py' file, the contents of
+# ... which will be pasted below:)
+
+# big_list = [[1, 'triangle', 5.0, 6.0, 15.0], [1, 'rectangle', 5.0, 6.0, 22.0, 30.0],
+# [1, 'rectangle', 4.0, 3.0, 14.0, 12.0]]
+
+# for item in big_list:
+#     print("{} area {} perimeter {}".format(item[1], item[3], item[4]))
+
+for item in all_round_statistics:
+
+    print('''
+Question {}:
+
+    Shape Type: {}
+    First User Input: {}
+    Second User Input:
+    Perimeter of Shape:
+    Area of Shape:'''.format(item[0], item[1], item[2]))
 
 # Thanks the user for using the Geometry Calculator before exiting the program.
 
