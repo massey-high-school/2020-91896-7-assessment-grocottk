@@ -45,6 +45,10 @@ Please begin the program by entering the name of your desired shape.
 # ... [Adapted from '02_yes_no_checker.py' by Ms. Gottschalk]
 
 
+# Yes or No Checker (Checks whether an input is either Yes or a No)
+# ... [Adapted from '02_yes_no_checker.py' by Ms. Gottschalk]
+
+
 def yes_no(question):
 
     # Defines list to check against
@@ -62,19 +66,19 @@ def yes_no(question):
 
         # Checks input against the Yes and No in the 'to_check' list
 
-        for item in to_check:
+        for yes_no_item in to_check:
 
             # If the response is in the list, return the response
 
-            if response == item:
+            if response == yes_no_item:
 
                 return response
 
             # if the response is one letter and is either a 'y' or 'n', return the corresponding answer.
 
-            elif response == item[0]:
+            elif response == yes_no_item[0]:
 
-                return item
+                return yes_no_item
 
         # Otherwise, print an error message
 
@@ -93,7 +97,7 @@ def shape_list_formatting():
 
     # Adds every item in the 'valid_shapes' list into a sentence
 
-    for item in valid_shapes:
+    for formatted_item in valid_shapes:
 
         # Adds spaces between each list item
 
@@ -101,17 +105,12 @@ def shape_list_formatting():
 
         # Adds all items into the shape_list variable
 
-        shape_list += item
+        shape_list += formatted_item
 
     return shape_list
 
 # Shape Checker (Checks to see which shape the user has chosen from the options given)
 # ... [This program is a customised version of the '02_yes_no_checker.py' by Ms. Gottschalk which checks shape types]
-
-
-# Defines list of valid shapes to check against
-
-valid_shapes = ["square", "circle", "rectangle", "triangle"]
 
 
 def shape_choice(question):
@@ -127,20 +126,20 @@ def shape_choice(question):
 
         # Checks input against the valid shapes in the 'valid_shapes' list
 
-        for item in valid_shapes:
+        for shape_item in valid_shapes:
 
             # If the response is in the valid shapes list, return the response
 
-            if response == item:
+            if response == shape_item:
 
                 return response
 
             # If a single letter us entered and matches the first letter of any of the shape names,
             # ... return the shape name.
 
-            elif response == item[0]:
+            elif response == shape_item[0]:
 
-                return item
+                return shape_item
 
         # Otherwise, print an error message
 
@@ -183,18 +182,10 @@ def number_checker(question):
 
             print(error)
 
-# Defines the constant of 'PI', in order to simplify the circle equations later in the program.
-
-
-PI = 3.14159265359
-
 # Specific Measurement Checker (Checks to see which measurement type has been chosen from the two options given)
-# ... [This program is a customised version of the '02_yes_no_checker.py' by Ms. Gottschalk which checks shape types]
+# ... [This program is a customised version of the '02_yes_no_checker.py'
+# ... by Ms. Gottschalk which checks shape types]
 # ... (This program is also adapted from the above shape checker)
-
-# Defines list of valid specific measurements to check against
-
-measurement_types = ["area", "perimeter"]
 
 
 def measurement_choice(question):
@@ -210,23 +201,33 @@ def measurement_choice(question):
 
         # Checks input against the valid shapes in the 'measurement_types' list
 
-        for item in measurement_types:
+        for measurement_item in measurement_types:
 
             # If the response is in the measurement types list, return the response
 
-            if response == item:
+            if response == measurement_item:
 
                 return response
 
             # If either of the letters 'a' or 'e' are entered, return the corresponding measurement type.
 
-            elif response == item[0]:
+            elif response == measurement_item[0]:
 
-                return item
+                return measurement_item
 
         # Otherwise, print an error message
 
         print("Please enter either 'Perimeter' or 'Area' ")
+
+# *** Main Routine: ***
+
+# * Defining Variables and Lists: *
+# ... [Inspired by subheadings from '11_post_usability_testing_outcome.py' by Kahlil Grocott]
+
+# Defines the constant of 'PI', in order to simplify the circle equations later in the program.
+
+
+PI = 3.14159265359
 
 # Defines 'all_round_statistics' list that will ultimately contain all of the working
 # ... and results from all Rounds of the program.
@@ -239,9 +240,15 @@ all_round_statistics = []
 
 questions_solved = 0
 
-# *** Main Routine: ***
+# Defines list of valid shapes to check against
 
-# * Calculator Introduction: * [Inspired by subheadings from '11_post_usability_testing_outcome.py' by Kahlil Grocott]
+valid_shapes = ["square", "circle", "rectangle", "triangle"]
+
+# Defines list of valid specific measurements to check against
+
+measurement_types = ["area", "perimeter"]
+
+# * Calculator Introduction: *
 
 # Prints Title
 
@@ -294,14 +301,14 @@ while loop == "":
 
         # Basic question asking user for shape measurement input.
 
-        length = number_checker("Please enter the the value of the length of one of the sides of your square "
-                                "in centimeters, with no unit required to be entered ")
+        first_metric = number_checker("Please enter the the value of the length of one of the sides of your square "
+                                      "in centimeters, with no unit required to be entered ")
 
         # Runs User input through equation related to shape type
 
-        perimeter = float(length) * 4
+        perimeter = float(first_metric) * 4
 
-        area = float(length) * float(length)
+        area = float(first_metric) * float(first_metric)
 
         # Prints the perimeter and area taken from user's input
 
@@ -323,7 +330,7 @@ while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
 
         # Appends the user's given measurement of the shape to the 'round_statistics' list
 
-        round_statistics.append(length)
+        round_statistics.append(first_metric)
 
         # Appends the perimeter of the shape to the 'round_statistics' list
 
@@ -339,8 +346,8 @@ while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
 
         # Basic question asking user for shape measurement input.
 
-        radius = number_checker("Please enter the value of the radius of your circle in centimeters, "
-                                "with no unit name required to be entered ")
+        first_metric = number_checker("Please enter the value of the radius of your circle in centimeters, "
+                                      "with no unit name required to be entered ")
 
         # Runs User input through equation related to shape type
 
@@ -351,9 +358,9 @@ while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
         # A Circle calculation widget from 'Wolfram Alpha' was also used in the development of this program at the
         # ... following link: https://www.wolframalpha.com/widgets/gallery/view.jsp?id=e0d0f4c329f9c25d945e3b500541150a
 
-        perimeter = 2 * PI * float(radius)
+        perimeter = 2 * PI * float(first_metric)
 
-        area = PI * (float(radius) * float(radius))
+        area = PI * (float(first_metric) * float(first_metric))
 
         # Prints the perimeter and area taken from user's input
 
@@ -375,7 +382,7 @@ while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
 
         # Appends the user's given measurement of the shape to the 'round_statistics' list
 
-        round_statistics.append(radius)
+        round_statistics.append(first_metric)
 
         # Appends the perimeter of the shape to the 'round_statistics' list
 
@@ -391,19 +398,19 @@ while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
 
         # Basic question asking user for shape measurement input.
 
-        base = number_checker("Please enter the value of the length of the shortest side of your rectangle "
-                              "in centimeters, with no unit required to be entered ")
+        first_metric = number_checker("Please enter the value of the length of the shortest side of your rectangle "
+                                      "in centimeters, with no unit required to be entered ")
 
         # Basic question asking user for the second required shape measurement.
 
-        height = number_checker("Please enter the value of the length of the longest side of your rectangle "
-                                "in centimeters, with no unit required to be entered ")
+        second_metric = number_checker("Please enter the value of the length of the longest side of your rectangle "
+                                       "in centimeters, with no unit required to be entered ")
 
         # Runs User input through equation related to shape type
 
-        perimeter = (float(base) * 2) + (float(height) * 2)
+        perimeter = (float(first_metric) * 2) + (float(second_metric) * 2)
 
-        area = float(base) * float(height)
+        area = float(first_metric) * float(second_metric)
 
         # Prints the perimeter and area taken from user's input
 
@@ -425,11 +432,11 @@ while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
 
         # Appends the user's first given measurement of the shape to the 'round_statistics' list
 
-        round_statistics.append(base)
+        round_statistics.append(first_metric)
 
         # Appends the user's second given measurement of the shape to the 'round_statistics' list
 
-        round_statistics.append(height)
+        round_statistics.append(second_metric)
 
         # Appends the perimeter of the shape to the 'round_statistics' list
 
@@ -445,19 +452,19 @@ while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
 
         # Basic question asking user for shape measurement input.
 
-        triangle_base = number_checker("Please enter the value of the length of the base of your triangle "
-                                       "in centimeters, with no unit required to be entered ")
+        first_metric = number_checker("Please enter the value of the length of the base of your triangle "
+                                      "in centimeters, with no unit required to be entered ")
 
         # Basic question asking user for the second required shape measurement.
 
-        triangle_height = number_checker("Please enter the value of the total vertical height of your triangle "
-                                         "in centimeters, with no unit required to be entered ")
+        second_metric = number_checker("Please enter the value of the total vertical height of your triangle "
+                                       "in centimeters, with no unit required to be entered ")
 
         # Runs User input through equation related to shape type
 
-        perimeter = float(triangle_base) * 3
+        perimeter = float(first_metric) * 3
 
-        area = (float(triangle_base) * float(triangle_height)) / 2
+        area = (float(first_metric) * float(second_metric)) / 2
 
         # Prints the perimeter and area taken from user's input
 
@@ -479,11 +486,11 @@ while the area of your triangle is {:.2f}cm squared'''.format(perimeter, area))
 
         # Appends the user's first given measurement of the shape to the 'round_statistics' list
 
-        round_statistics.append(triangle_base)
+        round_statistics.append(first_metric)
 
         # Appends the user's second given measurement of the shape to the 'round_statistics' list
 
-        round_statistics.append(triangle_height)
+        round_statistics.append(second_metric)
 
         # Appends the perimeter of the shape to the 'round_statistics' list
 
@@ -530,5 +537,3 @@ Question {}:
 # Thanks the user for using the Geometry Calculator before exiting the program.
 
 statement_generator("Thank you for using the Geometry Calculator", "@")
-
-
