@@ -29,21 +29,21 @@ Welcome to the Geometry Calculator,
 
 This program is intended for use by Intermediate School Students to assist in the completion of geometric equations.
 
-In this program, you will be expected to enter the name of the shape type that you would like to calculate,
-followed by the specific measurement that you would like to calculate and finally the required lengths that must
-be entered in order to calculate your desired shape and measurement.
+In this program, you will first be expected to enter, from a selection of options, the name of the shape type 
+that you would like to calculate the measurements of.
 
-After this, the answer to your specific result (either perimeter or area) will be given, with the program asking
-whether you would like to calculate any further shapes.
+After this, you will be asked to enter the required measurements that will be used to calculate 
+both the area and perimeter of your shape.
 
-Finally, after all of your questions have been calculated, a summary of the working done by the program will be printed.
+Finally, both the perimeter and area of your given shape will be printed, followed by a question
+asking you whether you would like to calculate the answer to another question.
 
-Please begin the program by entering the name of your desired shape.
+If you continue from the previous question, you will be able to repeat the above process.
+If you instead, however, choose to end the program, a summary of the questions that you have calculated will be given, 
+with all of the numbers in the summary being rounded to two decimal places.
+
+In order to begin, please enter below the name of your desired shape.
     ''')
-
-# Yes or No Checker (Checks whether an input is either Yes or a No)
-# ... [Adapted from '02_yes_no_checker.py' by Ms. Gottschalk]
-
 
 # Yes or No Checker (Checks whether an input is either Yes or a No)
 # ... [Adapted from '02_yes_no_checker.py' by Ms. Gottschalk]
@@ -219,6 +219,37 @@ def measurement_choice(question):
 
         print("Please enter either 'Perimeter' or 'Area' ")
 
+# List Appending Function (Appends chosen list with a variety of important statistics from round)
+# (Personal refresh on how to use the 'append.' function taken from '10_assembled_outcome.py'
+# ... by myself [Kahlil Grocott])
+
+
+def list_appending(list):
+
+    # Appends the number of questions solved in the program up until this point to the chosen list
+
+    list.append(questions_solved)
+
+    # Appends the type of shape calculated in the round to the chosen list
+
+    list.append(shape_type)
+
+    # Appends the user's first given measurement of the shape to the chosen list
+
+    list.append(first_metric)
+
+    # Appends the user's second given measurement of the shape to the chosen list
+
+    list.append(second_metric)
+
+    # Appends the perimeter of the shape to the chosen list
+
+    list.append(perimeter)
+
+    # Appends the area of the shape to the chosen list
+
+    list.append(area)
+
 # *** Main Routine: ***
 
 # * Defining Variables and Lists: *
@@ -284,7 +315,7 @@ while loop == "":
 
     round_statistics = []
 
-    # Adds one to the program's 'questions_solved' variable in order to show as Question information in final summary.
+    # Adds one to the program's 'questions_solved' variable in order to show as question information in final summary.
     # (Increment code inspired by https://reeborg.ca/docs/en/variables/increment.html)
 
     questions_solved += 1
@@ -301,8 +332,12 @@ while loop == "":
 
         # Basic question asking user for shape measurement input.
 
-        first_metric = number_checker("Please enter the the value of the length of one of the sides of your square "
-                                      "in centimeters, with no unit required to be entered ")
+        first_metric = number_checker("Please enter the the value, without unit names, of the length of one of the "
+                                      "sides of your square in centimeters ")
+
+        # Defines the 'second_metric' variable as '0', in order to allow for result formatting.
+
+        second_metric = 0
 
         # Runs User input through equation related to shape type
 
@@ -316,29 +351,9 @@ while loop == "":
 The perimeter of your square is {:.2f}cm,
 while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
 
-        # Appends list 'round_statistics' list with all available statistics from Round
-        # (Reminder of how to use the 'append.' function taken from '10_assembled_outcome.py'
-        # ... by myself [Kahlil Grocott])
+        # Calls List Appending Function in order to append all important statistics to 'round_statistics' list
 
-        # Appends the number of questions solved in the program up until this point to the 'round_statistics' list
-
-        round_statistics.append(questions_solved)
-
-        # Appends the type of shape calculated in the round to the 'round_statistics' list
-
-        round_statistics.append(valid_shapes[0])
-
-        # Appends the user's given measurement of the shape to the 'round_statistics' list
-
-        round_statistics.append(first_metric)
-
-        # Appends the perimeter of the shape to the 'round_statistics' list
-
-        round_statistics.append(perimeter)
-
-        # Appends the area of the shape to the 'round_statistics' list
-
-        round_statistics.append(area)
+        list_appending(round_statistics)
 
     # Otherwise, if the desired shape is a circle, carry out the following:
 
@@ -346,8 +361,12 @@ while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
 
         # Basic question asking user for shape measurement input.
 
-        first_metric = number_checker("Please enter the value of the radius of your circle in centimeters, "
-                                      "with no unit name required to be entered ")
+        first_metric = number_checker("Please enter the value, without unit names, of the radius "
+                                      "of your circle in centimeters ")
+
+        # Defines the 'second_metric' variable as '0', in order to allow for result formatting.
+
+        second_metric = 0
 
         # Runs User input through equation related to shape type
 
@@ -368,29 +387,9 @@ while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
 The circumference of your provided circle is {:.2f}cm,
 while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
 
-        # Appends list 'round_statistics' with all important statistics from Round
-        # (Reminder of how to use the 'append.' function taken from '10_assembled_outcome.py'
-        # ... by myself [Kahlil Grocott])
+        # Calls List Appending Function in order to append all important statistics to 'round_statistics' list
 
-        # Appends the number of questions solved in the program up until this point to the 'round_statistics' list
-
-        round_statistics.append(questions_solved)
-
-        # Appends the type of shape calculated in the round to the 'round_statistics' list
-
-        round_statistics.append(valid_shapes[1])
-
-        # Appends the user's given measurement of the shape to the 'round_statistics' list
-
-        round_statistics.append(first_metric)
-
-        # Appends the perimeter of the shape to the 'round_statistics' list
-
-        round_statistics.append(perimeter)
-
-        # Appends the area of the shape to the 'round_statistics' list
-
-        round_statistics.append(area)
+        list_appending(round_statistics)
 
     # Otherwise, if the desired shape is a rectangle, carry out the following:
 
@@ -398,13 +397,13 @@ while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
 
         # Basic question asking user for shape measurement input.
 
-        first_metric = number_checker("Please enter the value of the length of the shortest side of your rectangle "
-                                      "in centimeters, with no unit required to be entered ")
+        first_metric = number_checker("Please enter the value, without unit names, of the length of the shortest side "
+                                      "of your rectangle in centimeters ")
 
         # Basic question asking user for the second required shape measurement.
 
-        second_metric = number_checker("Please enter the value of the length of the longest side of your rectangle "
-                                       "in centimeters, with no unit required to be entered ")
+        second_metric = number_checker("Please enter the value, without unit names, of the length of the longest side "
+                                       "of your rectangle in centimeters ")
 
         # Runs User input through equation related to shape type
 
@@ -418,33 +417,9 @@ while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
 The perimeter of your rectangle is {:.2f}cm,
 while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
 
-        # Appends list 'round_statistics' with all important statistics from Round
-        # (Reminder of how to use the 'append.' function taken from '10_assembled_outcome.py'
-        # ... by myself [Kahlil Grocott])
+        # Calls List Appending Function in order to append all important statistics to 'round_statistics' list
 
-        # Appends the number of questions solved in the program up until this point to the 'round_statistics' list
-
-        round_statistics.append(questions_solved)
-
-        # Appends the type of shape calculated in the round to the 'round_statistics' list
-
-        round_statistics.append(valid_shapes[2])
-
-        # Appends the user's first given measurement of the shape to the 'round_statistics' list
-
-        round_statistics.append(first_metric)
-
-        # Appends the user's second given measurement of the shape to the 'round_statistics' list
-
-        round_statistics.append(second_metric)
-
-        # Appends the perimeter of the shape to the 'round_statistics' list
-
-        round_statistics.append(perimeter)
-
-        # Appends the area of the shape to the 'round_statistics' list
-
-        round_statistics.append(area)
+        list_appending(round_statistics)
 
     # Otherwise, if the desired shape is a triangle, carry out the following:
 
@@ -452,13 +427,13 @@ while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
 
         # Basic question asking user for shape measurement input.
 
-        first_metric = number_checker("Please enter the value of the length of the base of your triangle "
-                                      "in centimeters, with no unit required to be entered ")
+        first_metric = number_checker("Please enter the value, without unit names, of the length of the base "
+                                      "of your triangle in centimeters ")
 
         # Basic question asking user for the second required shape measurement.
 
-        second_metric = number_checker("Please enter the value of the total vertical height of your triangle "
-                                       "in centimeters, with no unit required to be entered ")
+        second_metric = number_checker("Please enter the value, without unit names, of the total vertical height "
+                                       "of your triangle in centimeters ")
 
         # Runs User input through equation related to shape type
 
@@ -472,33 +447,9 @@ while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
 The perimeter of your triangle is {:.2f}cm,
 while the area of your triangle is {:.2f}cm squared'''.format(perimeter, area))
 
-        # Appends list 'round_statistics' with all important statistics from Round
-        # (Reminder of how to use the 'append.' function taken from '10_assembled_outcome.py'
-        # ... by myself [Kahlil Grocott])
+        # Calls List Appending Function in order to append all important statistics to 'round_statistics' list
 
-        # Appends the number of questions solved in the program up until this point to the 'round_statistics' list
-
-        round_statistics.append(questions_solved)
-
-        # Appends the type of shape calculated in the round to the 'round_statistics' list
-
-        round_statistics.append(valid_shapes[3])
-
-        # Appends the user's first given measurement of the shape to the 'round_statistics' list
-
-        round_statistics.append(first_metric)
-
-        # Appends the user's second given measurement of the shape to the 'round_statistics' list
-
-        round_statistics.append(second_metric)
-
-        # Appends the perimeter of the shape to the 'round_statistics' list
-
-        round_statistics.append(perimeter)
-
-        # Appends the area of the shape to the 'round_statistics' list
-
-        round_statistics.append(area)
+        list_appending(round_statistics)
 
     # Appends all individual round information into 'all_round_statistics' list
 
@@ -529,10 +480,10 @@ for item in all_round_statistics:
 Question {}:
 
     Shape Type: {}
-    First User Input: {}
-    Second User Input:
-    Perimeter of Shape:
-    Area of Shape:'''.format(item[0], item[1], item[2]))
+    First User Input: {:.2f}
+    Second User Input (if applicable): {:.2f}
+    Perimeter of Shape: {:.2f}
+    Area of Shape: {:.2f}'''.format(item[0], item[1], item[2], item[3], item[4], item[5]))
 
 # Thanks the user for using the Geometry Calculator before exiting the program.
 
