@@ -47,13 +47,11 @@ In order to begin, please enter below the name of your desired shape.
 
 # Yes or No Checker (Checks whether an input is either Yes or a No)
 # ... [Adapted from '02_yes_no_checker.py' by Ms. Gottschalk]
+# ['chosen_list' implementation inspired by Ms. Gottschalk's 'string_checker'
+# ... file in repl.it]
 
 
-def yes_no(question):
-
-    # Defines list to check against
-
-    to_check = ["yes", "no"]
+def yes_no(question, chosen_list):
 
     # Begin Loop
 
@@ -66,7 +64,7 @@ def yes_no(question):
 
         # Checks input against the Yes and No in the 'to_check' list
 
-        for yes_no_item in to_check:
+        for yes_no_item in chosen_list:
 
             # If the response is in the list, return the response
 
@@ -111,9 +109,11 @@ def shape_list_formatting():
 
 # Shape Checker (Checks to see which shape the user has chosen from the options given)
 # ... [This program is a customised version of the '02_yes_no_checker.py' by Ms. Gottschalk which checks shape types]
+# ['chosen_list' implementation inspired by Ms. Gottschalk's 'string_checker'
+# ... file in repl.it]
 
 
-def shape_choice(question):
+def shape_choice(question, chosen_list):
 
     # Begin Loop
 
@@ -126,7 +126,7 @@ def shape_choice(question):
 
         # Checks input against the valid shapes in the 'valid_shapes' list
 
-        for shape_item in valid_shapes:
+        for shape_item in chosen_list:
 
             # If the response is in the valid shapes list, return the response
 
@@ -182,78 +182,46 @@ def number_checker(question):
 
             print(error)
 
-# Specific Measurement Checker (Checks to see which measurement type has been chosen from the two options given)
-# ... [This program is a customised version of the '02_yes_no_checker.py'
-# ... by Ms. Gottschalk which checks shape types]
-# ... (This program is also adapted from the above shape checker)
-
-
-def measurement_choice(question):
-
-    # Begin Loop
-
-    valid = False
-    while not valid:
-
-        # Defines response variable (as well as converting input into all lowercase letters)
-
-        response = input(question).lower()
-
-        # Checks input against the valid shapes in the 'measurement_types' list
-
-        for measurement_item in measurement_types:
-
-            # If the response is in the measurement types list, return the response
-
-            if response == measurement_item:
-
-                return response
-
-            # If either of the letters 'a' or 'e' are entered, return the corresponding measurement type.
-
-            elif response == measurement_item[0]:
-
-                return measurement_item
-
-        # Otherwise, print an error message
-
-        print("Please enter either 'Perimeter' or 'Area' ")
-
 # List Appending Function (Appends chosen list with a variety of important statistics from round)
 # (Personal refresh on how to use the 'append.' function taken from '10_assembled_outcome.py'
-# ... by myself [Kahlil Grocott])
+# ... by myself [Kahlil Grocott]) ['chosen_list' implementation inspired by Ms. Gottschalk's 'string_checker'
+# ... file in repl.it]
 
 
-def list_appending(list):
+def list_appending(chosen_list):
 
     # Appends the number of questions solved in the program up until this point to the chosen list
 
-    list.append(questions_solved)
+    chosen_list.append(questions_solved)
 
     # Appends the type of shape calculated in the round to the chosen list
 
-    list.append(shape_type)
+    chosen_list.append(shape_type)
 
     # Appends the user's first given measurement of the shape to the chosen list
 
-    list.append(first_metric)
+    chosen_list.append(first_metric)
 
     # Appends the user's second given measurement of the shape to the chosen list
 
-    list.append(second_metric)
+    chosen_list.append(second_metric)
 
     # Appends the perimeter of the shape to the chosen list
 
-    list.append(perimeter)
+    chosen_list.append(perimeter)
 
     # Appends the area of the shape to the chosen list
 
-    list.append(area)
+    chosen_list.append(area)
 
 # *** Main Routine: ***
 
 # * Defining Variables and Lists: *
 # ... [Inspired by subheadings from '11_post_usability_testing_outcome.py' by Kahlil Grocott]
+
+# Defines 'yes_no' list used by the Yes or No Checker
+
+yes_no_list = ["yes", "no"]
 
 # Defines the constant of 'PI', in order to simplify the circle equations later in the program.
 
@@ -275,10 +243,6 @@ questions_solved = 0
 
 valid_shapes = ["square", "circle", "rectangle", "triangle"]
 
-# Defines list of valid specific measurements to check against
-
-measurement_types = ["area", "perimeter"]
-
 # * Calculator Introduction: *
 
 # Prints Title
@@ -287,7 +251,7 @@ statement_generator("Welcome to the Geometry Calculator", "*")
 
 # Asks User whether they have used the program before [Adapted from '02_yes_no_checker.py' by Ms. Gottschalk]
 
-program_experience = yes_no("Have you used this program before? ")
+program_experience = yes_no("Have you used this program before? ", yes_no_list)
 
 # If the user answers yes, print an empty print statement and continue the program
 
@@ -324,7 +288,8 @@ while loop == "":
 
     # Prints the formatted and easily editable shape list to gain input from the user on their desired shape type
 
-    shape_type = shape_choice("Please enter a shape from the following{} ".format(shape_list_formatting()))
+    shape_type = shape_choice("Please enter a shape from the following{} ".format(shape_list_formatting()),
+                              valid_shapes)
 
     # If the desired shape is a square, carry out the following:
 
