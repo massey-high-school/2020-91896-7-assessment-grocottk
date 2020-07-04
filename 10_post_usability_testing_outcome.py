@@ -219,14 +219,15 @@ def list_appending(chosen_list):
 # * Defining Variables and Lists: *
 # ... [Inspired by subheadings from '11_post_usability_testing_outcome.py' by Kahlil Grocott]
 
+# Defines list of valid shapes to check against
+
+
+valid_shapes = ["square", "circle", "rectangle", "triangle"]
+
 # Defines 'yes_no' list used by the Yes or No Checker
 
+
 yes_no_list = ["yes", "no"]
-
-# Defines the constant of 'PI', in order to simplify the circle equations later in the program.
-
-
-PI = 3.14159265359
 
 # Defines 'all_round_statistics' list that will ultimately contain all of the working
 # ... and results from all Rounds of the program.
@@ -234,14 +235,16 @@ PI = 3.14159265359
 
 all_round_statistics = []
 
+# Defines the constant of 'PI', in order to simplify the circle equations later in the program.
+
+
+PI = 3.14159265359
+
 # Defines 'questions_solved' variable
 # ... (Round Counting in program inspired by the GIST 'RPS_07.1_Round_Counter_Alone.py' by myself [Kahlil Grocott])
 
+
 questions_solved = 0
-
-# Defines list of valid shapes to check against
-
-valid_shapes = ["square", "circle", "rectangle", "triangle"]
 
 # * Calculator Introduction: *
 
@@ -275,6 +278,8 @@ loop = ""
 
 while loop == "":
 
+    # * Round Setup: *
+
     # Defines or 'Empties' the 'round_statistics' list at the beginning of every question asked
 
     round_statistics = []
@@ -290,6 +295,8 @@ while loop == "":
 
     shape_type = shape_choice("Please enter a shape from the following{} ".format(shape_list_formatting()),
                               valid_shapes)
+
+    # * Shape-Based Input, Calculations and Results: *
 
     # If the desired shape is a square, carry out the following:
 
@@ -310,11 +317,13 @@ while loop == "":
 
         area = float(first_metric) * float(first_metric)
 
-        # Prints the perimeter and area taken from user's input
+        # Prints the perimeter and area calculated from user's given input(s)
+        # [Unit Formatting taken from 'The Math Forum' at the following address:
+        # ... http://mathforum.org/library/drmath/view/65501.html]
 
         print('''
-The perimeter of your square is {:.2f}cm,
-while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
+The perimeter of your square is {:.2f} cm,
+while the area of your square is {:.2f} cm^2'''.format(perimeter, area))
 
         # Calls List Appending Function in order to append all important statistics to 'round_statistics' list
 
@@ -346,11 +355,13 @@ while the area of your square is {:.2f}cm squared'''.format(perimeter, area))
 
         area = PI * (float(first_metric) * float(first_metric))
 
-        # Prints the perimeter and area taken from user's input
+        # Prints the perimeter and area calculated from user's given input(s)
+        # [Unit Formatting taken from 'The Math Forum' at the following address:
+        # ... http://mathforum.org/library/drmath/view/65501.html]
 
         print('''
-The circumference of your provided circle is {:.2f}cm,
-while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
+The circumference of your provided circle is {:.2f} cm,
+while the area of your circle is {:.2f} cm^2'''.format(perimeter, area))
 
         # Calls List Appending Function in order to append all important statistics to 'round_statistics' list
 
@@ -376,11 +387,13 @@ while the area of your circle is {:.2f}cm squared'''.format(perimeter, area))
 
         area = float(first_metric) * float(second_metric)
 
-        # Prints the perimeter and area taken from user's input
+        # Prints the perimeter and area calculated from user's given input(s)
+        # [Unit Formatting taken from 'The Math Forum' at the following address:
+        # ... http://mathforum.org/library/drmath/view/65501.html]
 
         print('''
-The perimeter of your rectangle is {:.2f}cm,
-while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
+The perimeter of your rectangle is {:.2f} cm,
+while the area of your rectangle is {:.2f} cm^2'''.format(perimeter, area))
 
         # Calls List Appending Function in order to append all important statistics to 'round_statistics' list
 
@@ -406,17 +419,21 @@ while the area of your rectangle is {:.2f}cm squared'''.format(perimeter, area))
 
         area = (float(first_metric) * float(second_metric)) / 2
 
-        # Prints the perimeter and area taken from user's input
+        # Prints the perimeter and area calculated from user's given input(s)
+        # [Unit Formatting taken from 'The Math Forum' at the following address:
+        # ... http://mathforum.org/library/drmath/view/65501.html]
 
         print('''
-The perimeter of your triangle is {:.2f}cm,
-while the area of your triangle is {:.2f}cm squared'''.format(perimeter, area))
+The perimeter of your triangle is {:.2f} cm,
+while the area of your triangle is {:.2f} cm^2'''.format(perimeter, area))
 
         # Calls List Appending Function in order to append all important statistics to 'round_statistics' list
 
         list_appending(round_statistics)
 
-    # Appends all individual round information into 'all_round_statistics' list
+    # * Loop Conclusion: *
+
+    # Appends all individual round information from 'round_statistics' list into 'all_round_statistics' list
 
     all_round_statistics.append(round_statistics)
 
@@ -431,7 +448,8 @@ Enter <enter> to continue, or any other key to exit the Geometry Calculator ''')
 
 # Formatted Information array (original inspiration taken from many sources, including 'geekidharsh' on
 # ... stackoverflow.com, however inspiration ultimately taken from Ms. Gottschalk's 'sandpit.py' file, the contents of
-# ... which will be pasted below:)
+# ... which will be pasted below:) [Unit Formatting taken from 'The Math Forum' at the following address:
+# ... http://mathforum.org/library/drmath/view/65501.html]
 
 # big_list = [[1, 'triangle', 5.0, 6.0, 15.0], [1, 'rectangle', 5.0, 6.0, 22.0, 30.0],
 # [1, 'rectangle', 4.0, 3.0, 14.0, 12.0]]
@@ -445,10 +463,10 @@ for item in all_round_statistics:
 Question {}:
 
     Shape Type: {}
-    First User Input: {:.2f}
-    Second User Input (if applicable): {:.2f}
-    Perimeter of Shape: {:.2f}
-    Area of Shape: {:.2f}'''.format(item[0], item[1], item[2], item[3], item[4], item[5]))
+    First User Input: {:.2f} cm
+    Second User Input (if applicable): {:.2f} cm
+    Perimeter of Shape: {:.2f} cm
+    Area of Shape: {:.2f} cm^2'''.format(item[0], item[1], item[2], item[3], item[4], item[5]))
 
 # Thanks the user for using the Geometry Calculator before exiting the program.
 
